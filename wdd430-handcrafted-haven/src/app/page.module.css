@@ -1,0 +1,97 @@
+.page {
+  background-color: #f9fafb;
+  color: #111827;
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 2rem;
+  background-color: #293474;
+  color: white;
+}
+
+.heroContent {
+  max-width: 50%;
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.ctaButtons a {
+  margin-right: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.primaryBtn {
+  background-color: #d58b0b;
+  color: #111827;
+}
+
+.secondaryBtn {
+  background-color: #d58b0b;
+  color: #111827;
+}
+
+.heroImage {
+  border-radius: 12px;
+}
+
+/* Categories Section */
+.categories {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 250px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Mission Section */
+.mission {
+  padding: 3rem 2rem;
+  background-color: #f3f4f6;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+  padding: 1rem;
+  text-align: center;
+  background-color: #293474;
+  color: white;
+  font-size: 0.9rem;
+}
