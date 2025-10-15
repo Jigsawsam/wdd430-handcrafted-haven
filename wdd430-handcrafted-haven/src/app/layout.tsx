@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./styles.css";
 import { Poppins, Inter, Source_Code_Pro } from "next/font/google";
 
 // Headings: Poppins
