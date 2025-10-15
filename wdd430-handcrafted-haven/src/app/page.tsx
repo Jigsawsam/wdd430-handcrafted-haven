@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
 
-async function getData() {
+//async function getData() {
   // Simulate slow loading
   //await new Promise((resolve) => setTimeout(resolve, 2000));
   //return true;
-}
+//}
 
 export default async function Home() {
   //await getData(); // simulate delay
