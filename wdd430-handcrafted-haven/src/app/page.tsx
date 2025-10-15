@@ -1,31 +1,56 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
-export default function Home() {
+//async function getData() {
+  // Simulate slow loading
+  //await new Promise((resolve) => setTimeout(resolve, 2000));
+  //return true;
+//}
+
+export default async function Home() {
+  //await getData(); // simulate delay
+
   return (
     <div className={styles.page}>
       {/* Hero Section */}
       <section className={styles.hero}>
+        {/* Background Image */}
+        <Image
+          src="/handcrafted-hero-half.jpg"
+          alt="Handcrafted items"
+          fill
+          className={styles.heroImageDesktop}
+          priority
+        />
+
+        {/* Hero Overlay */}
+        <div className={styles.heroOverlay}></div>
+
+        {/* Content */}
         <div className={styles.heroContent}>
           <h1 className={styles.title}>Handcrafted Haven</h1>
           <p className={styles.subtitle}>
-            Discover unique handcrafted treasures while supporting local artisans.
+            Discover unique handcrafted treasures while supporting local
+            artisans.
           </p>
           <div className={styles.ctaButtons}>
-            <a href="/products" className={styles.primaryBtn}>
+            <Link href="/shop" className={styles.primaryBtn}>
               Shop Now
-            </a>
-            <a href="/sell" className={styles.secondaryBtn}>
+            </Link>
+            <Link href="/sell" className={styles.secondaryBtn}>
               Become a Seller
-            </a>
+            </Link>
           </div>
         </div>
+
+        {/* Mobile Image */}
         <Image
           src="/handcrafted-hero.jpg"
           alt="Handcrafted items"
           width={500}
           height={300}
-          className={styles.heroImage}
+          className={styles.heroImageMobile}
           priority
         />
       </section>
@@ -34,18 +59,18 @@ export default function Home() {
       <section className={styles.categories}>
         <h2>Explore Categories</h2>
         <div className={styles.grid}>
-          <div className={styles.card}>
+          <Link href="/shop/jewelry" className={styles.card}>
             <h3>Jewelry</h3>
             <p>Elegant handcrafted necklaces, rings & more.</p>
-          </div>
-          <div className={styles.card}>
+          </Link>
+          <Link href="/shop/home-decor" className={styles.card}>
             <h3>Home Decor</h3>
             <p>Unique handmade items to brighten your living space.</p>
-          </div>
-          <div className={styles.card}>
+          </Link>
+          <Link href="/shop/clothing" className={styles.card}>
             <h3>Clothing</h3>
             <p>Cozy, one-of-a-kind fashion pieces made with care.</p>
-          </div>
+          </Link>
         </div>
       </section>
 
