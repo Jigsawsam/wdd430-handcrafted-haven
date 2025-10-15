@@ -1,48 +1,46 @@
-
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function LoginPage() {
+export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [confirm, setConfirm] = useState("");
+  const [message, setMessage] = useState<string | null>(null);
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-    setLoading(true);
+    if (password !== confirm) {
+      setMessage("Passwords do not match");
+      return;
+    }
+
     try {
-      const res = await fetch("/api/auth/login", {
+      setMessage(null);
+      const res = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      if (!res.ok) {
-        setError(data.error || "Login failed");
-        return;
+      if (!res.ok) setMessage(data.error || "Signup failed");
+      else {
+        setMessage("Signup successful. Redirecting to login...");
+        setTimeout(() => router.push("/login"), 1200);
       }
-      // On success, redirect to dashboard
-      router.push("/dashboard");
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
-      setError(msg || "Network error");
-    } finally {
-      setLoading(false);
+      setMessage(msg || "Network error");
     }
   };
-
-  // Note: signup now handled on a dedicated /signup page; login button only submits form.
 
   return (
     <div className="page-center">
       <form onSubmit={handleSubmit} className="card-form">
-        <h2 className="form-title">Login</h2>
+        <h2 className="form-title">Create account</h2>
+
         <div className="form-group">
           <label className="label">Email</label>
           <input
@@ -53,6 +51,7 @@ export default function LoginPage() {
             required
           />
         </div>
+
         <div className="form-group">
           <label className="label">Password</label>
           <input
@@ -63,20 +62,20 @@ export default function LoginPage() {
             required
           />
         </div>
-        <button type="submit" className="btn-primary" disabled={loading}>
-          {loading ? (
-            <span style={{display: 'inline-flex', alignItems: 'center', gap: '0.5rem'}}>
-              <span className="spinner" aria-hidden="true" />
-              Logging in...
-            </span>
-          ) : (
-            'Login'
-          )}
-        </button>
-        <Link href="/signup">
-          <button type="button" className="btn-secondary">Sign up</button>
-        </Link>
-        {error && <p className="msg">{error}</p>}
+
+        <div className="form-group">
+          <label className="label">Confirm Password</label>
+          <input
+            type="password"
+            className="input"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            required
+          />
+        </div>
+
+        <button type="submit" className="btn-primary">Sign up</button>
+        {message && <p className="msg">{message}</p>}
       </form>
     </div>
   );
