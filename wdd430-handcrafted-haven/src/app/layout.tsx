@@ -41,6 +41,17 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${inter.variable} ${sourceCodePro.variable}`}
       >
+        {/* ===== Top text navigation (accessible) ===== */}
+        {/* <nav className="topNav">
+          <div className="navInner">
+            <Link href="/">Home</Link>
+            <Link href="/shop">Shop</Link>
+            <Link href="/sell">Sell</Link>
+            <Link href="/cart">Cart</Link>
+            <Link href="/login">Login</Link>
+            <Link href="/signup">Sign up</Link>
+          </div>
+        </nav> */}
         {/* ===== Shared Icon Navigation ===== */}
         <nav className="iconNav">
   <Link href="/" className="iconWrapper">

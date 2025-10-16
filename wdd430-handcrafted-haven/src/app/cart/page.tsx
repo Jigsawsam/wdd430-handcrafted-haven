@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import './cart.css';
 
 type Product = {
@@ -43,6 +44,10 @@ export default function CartPage() {
 
   return (
     <div className="cart-container">
+      <nav className="pageLinks">
+        <Link href="/shop">Continue shopping</Link>
+        <Link href="/checkout">Checkout</Link>
+      </nav>
       <h1>Your Shopping Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
