@@ -27,8 +27,8 @@ export default function LoginPage() {
         setError(data.error || "Login failed");
         return;
       }
-      // On success, redirect to dashboard
-      router.push("/dashboard");
+  // On success, redirect to shop
+  router.push("/shop");
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
       setError(msg || "Network error");

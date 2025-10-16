@@ -1,6 +1,7 @@
-'use client';
+ 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import './register.css'; 
 
 export default function RegisterPage() {
@@ -19,6 +20,10 @@ export default function RegisterPage() {
 
   return (
     <div className="register-container">
+      <nav className="pageLinks">
+        <Link href="/login">Back to login</Link>
+        <Link href="/">Home</Link>
+      </nav>
       <h1>Create Account</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
