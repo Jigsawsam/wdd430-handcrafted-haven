@@ -11,6 +11,14 @@ type Product = {
   price: number;
   image?: string;
 };
+
+type CartItem = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+};
+
 // Generate 24 sample products using picsum.photos images
 const SAMPLE_PRODUCTS: Product[] = Array.from({ length: 24 }).map((_, i) => {
   const id = i + 1;
@@ -43,7 +51,6 @@ const SAMPLE_PRODUCTS: Product[] = Array.from({ length: 24 }).map((_, i) => {
       "Vintage-style Poster",
     ][i % 24],
     price: Math.round((20 + Math.random() * 120) * 100) / 100,
-    // Use picsum with a seed to get consistent but varied images
     image: `https://picsum.photos/seed/product-${id}/800/600`,
   };
 });
@@ -59,14 +66,15 @@ export default function Page() {
 
   const addToCart = (p: Product) => {
     const saved = localStorage.getItem("cart");
-    const cart = saved ? JSON.parse(saved) : [];
-    // merge quantities when item already exists
-    const existing = cart.find((it: any) => it.id === p.id);
+    const cart: CartItem[] = saved ? JSON.parse(saved) : [];
+    const existing = cart.find((it) => it.id === p.id);
+
     if (existing) {
       existing.quantity = (existing.quantity || 1) + 1;
     } else {
       cart.push({ id: p.id, name: p.title, price: p.price, quantity: 1 });
     }
+
     localStorage.setItem("cart", JSON.stringify(cart));
     setCartCount(cart.length);
   };
@@ -84,15 +92,24 @@ export default function Page() {
         {products.map((p) => (
           <article key={p.id} className="productCard">
             {p.image && (
-              <div style={{ position: 'relative', width: '100%', height: 160 }}>
-                <Image src={p.image} alt={p.title} fill style={{ objectFit: 'cover', borderRadius: 6 }} />
+              <div style={{ position: "relative", width: "100%", height: 160 }}>
+                <Image
+                  src={p.image}
+                  alt={p.title}
+                  fill
+                  style={{ objectFit: "cover", borderRadius: 6 }}
+                />
               </div>
             )}
             <h3>{p.title}</h3>
             <p>${p.price.toFixed(2)}</p>
             <div className="productActions">
-              <button onClick={() => addToCart(p)} className="btn-primary">Add to cart</button>
-              <Link href={`/shop/${p.id}`} className="btn-secondary">Details</Link>
+              <button onClick={() => addToCart(p)} className="btn-primary">
+                Add to cart
+              </button>
+              <Link href={`/shop/${p.id}`} className="btn-secondary">
+                Details
+              </Link>
             </div>
           </article>
         ))}
@@ -100,4 +117,5 @@ export default function Page() {
     </div>
   );
 }
+
   
